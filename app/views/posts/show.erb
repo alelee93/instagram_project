@@ -1,0 +1,55 @@
+<html>
+    <head>
+    <style> 
+        img {height: 30% ; width: 30% }
+    </style>
+        <title>Show Image</title>
+    </head>
+    <body>
+        <h1> <%=@post.user.name%>'s Post</h1>
+
+        <% if current_user.posts.include?(@post) %>
+        <form action="/posts/<%=@post.id%>" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete Post">
+        </form>
+         <% end %>
+
+
+        <a href="/profiles/<%=@post.user.slug%>"><%=@post.user.username%> </a> : <%= @post.content %>
+        <br>
+         <img src="/<%= @post.url %>" width="300" height="300"/>
+
+         <h3> Comments </h3>
+         <% @post.messages.each do |comment|%>
+            <ul>
+                <% user = User.find(comment.sender_id) %>
+                <a href="/profiles/<%=user.slug%>"><%=user.username%> </a> : <%= comment.content %> 
+
+                <% if current_user == user %>
+                <a href="/comments/<%=comment.id%>/edit">Edit</a>
+             
+                <% end %>
+
+            </ul>
+
+        <% end %>
+
+    
+
+     <form action="/<%= current_user.slug%>/<%= @post.id %>/comments" method="POST">
+        <input type="text" name="comment" placeholder="Leave a comment ...">
+        <input type="submit" value="Comment">
+    </form>
+
+         <ul>
+         <% if current_user.posts.include?(@post) %>
+            <li><a href="/posts/<%=@post.id%>/edit"> Edit </a> </li>
+        <% end %>
+            <li><a href="/feed">Home</a></li>
+            <li><a href= "/post/new">New</a></li>
+            <li><a href="/logout">Log Out</a></li>
+        </ul>
+
+    </body>
+</html>

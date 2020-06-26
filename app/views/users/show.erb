@@ -1,0 +1,25 @@
+<h1> <%= @user.name %>'s Profile </h1>
+<p> <em> <%= @user.bio %> </em> </p>
+
+<p> Followers <a href="/<%=@user.slug%>/followers"> <b> <%= @user.followers.count %> </b> </p></a>
+
+<p> Following <a href="/<%=@user.slug%>/following"> <b> <%= @user.following.count %> </b> </p></a>
+
+<p> Posts <b> <%= @user.posts.count %> </b> </p>
+
+
+
+<% @user.posts.each do |post| %>
+     <a href="/posts/<%= post.id %>"><img src="/<%= post.url %>" width="100" height="100"/></a> 
+    <br>
+<% end %> 
+
+
+<h3> Menu </h3>
+<ul>
+    <li><a href="/feed">Home</a></li>
+    <% if @user == current_user %>
+    <li><a href= "/post/new">New Post</a></li>
+    <%end%>
+   
+</ul>

@@ -1,0 +1,10 @@
+<form action="/comments/<%= @comment.id %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="text" name="content" value="<%= @comment.content %>">
+    <input type="submit" value="update Comment">
+</form>
+
+<form action="/comments/<%=@comment.id%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Comment">
+</form>

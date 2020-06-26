@@ -1,0 +1,29 @@
+<h3> Welcome <%=current_user.name%>! </h3>
+<ul>
+    <li><a href = "/profiles/<%=current_user.slug%>">My Profile</a></li>
+    <li><a href = "/post/new">New Post</a></li>
+    <li><a href = "/profiles">Find Friends</a></li>
+    <li><a href = "/profiles/<%=current_user.slug%>/edit">Account</a></li>
+   
+</ul>
+
+<% current_user.following.each do |user| %>
+    <% user.posts.each do |post| %>
+        <a href="/profiles/<%=post.user.slug%>"><%=post.user.username%></a> 
+        <br>
+        <a href="/posts/<%=post.id%>"><img src="/<%= post.url %>" width="300" height="300"/></a>
+        <br>
+        <a href="/profiles/<%=post.user.slug%>"><%=post.user.username%></a> <%=post.content%>
+        <br>
+
+        <% if post.messages.count > 0 %>
+            <a href="/posts/<%=post.id%>"> View all <%=post.messages.count%> comments</a>
+            <br>
+        <% end %>
+       
+        <a href="/posts/<%=post.id%>"> Comment</a>
+        <br>
+        <br>
+    <% end %>
+<% end %>
+

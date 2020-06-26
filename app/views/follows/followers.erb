@@ -1,0 +1,21 @@
+<% @user.followers.each do |user| %>
+   
+    <a href="/profiles/<%=user.slug%>"> <%=user.username%> </a> 
+   
+    <% if current_user.following.include?(user) %>
+
+        <form action="/<%=user.slug%>/unfollow" method="post">
+        <input type="submit" name="unfollow" value="following">
+        </form>
+
+    <% else %>
+
+        <form action="/<%=user.slug%>/follow" method="post">
+        <input type="submit" name="follow" value="follow">
+        </form>
+
+        <br>
+
+
+    <% end %>
+<% end %>

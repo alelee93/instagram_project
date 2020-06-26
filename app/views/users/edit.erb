@@ -1,0 +1,16 @@
+<h3> Edit your Account </h3>
+
+<form action="/profiles/<%=@user.slug%>" method="POST">
+    <input type="hidden" name="_method" value="PATCH"> <br>
+    Name: <input type="text" name="name" value= <%=@user.name%>> <br>
+    Email: <input type="text" name="email" value= <%=@user.email%>> <br>
+    Username: <input type="text" name="username" value= <%=@user.username%>> <br>
+    Bio: <input type="text" name="bio" value= <%=@user.bio%>> <br>
+    <input type="submit" value="Update Account"> <br>
+</form>
+
+
+<ul>
+    <li><a href="/feed">Home</a></li>
+    <li><a href="/logout">Log Out</a></li>
+</ul>

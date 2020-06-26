@@ -1,0 +1,18 @@
+
+<style> 
+img {height: 30% ; width: 30% }
+</style>
+<h1> Edit Post </h1>
+<img src="/<%= @post.url %>" width="300" height="300"/>
+
+<form action="/posts/<%=@post.id%>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="text" name="content" value= <%=@post.content%>>
+    <input type="submit" value="Update Caption">
+</form>
+
+<ul>
+    <li><a href="/feed">Home</a></li>
+    <li><a href = "/post/new">New Post</a></li>
+    <li><a href="/logout">Log Out</a></li>
+</ul>
